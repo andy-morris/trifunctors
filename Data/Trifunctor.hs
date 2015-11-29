@@ -1,6 +1,5 @@
 {-# LANGUAGE DeriveGeneric, DeriveTraversable, TemplateHaskell #-}
 module Data.Trifunctor
-  (Trifunctor (..))
 where
 
 import GHC.Generics

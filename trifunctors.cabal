@@ -25,7 +25,8 @@ library
   default-extensions: UnicodeSyntax
   other-extensions:   DeriveGeneric, DeriveTraversable, TemplateHaskell
   ghc-options:        -Wall
-  exposed-modules:    Data.Trifunctor
-  build-depends:
-    base >= 4.8 && < 4.9,
-    bifunctors >= 5.1
+  exposed-modules:    Data.Trifunctor,
+                      Data.Trifoldable,
+                      Data.Tritraversable
+  build-depends:      base >= 4.8 && < 4.9,
+                      bifunctors >= 5.1
