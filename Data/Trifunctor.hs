@@ -16,33 +16,33 @@ class Trifunctor f where
 
 {-# RULES
 "trimap/trimap"
-    ∀f₁ f₂ g₁ g₂ h₁ h₂.
-    trimap f₁ g₁ h₁ . trimap f₂ g₂ h₂ =
-    trimap (f₁ . f₂) (g₁ . g₂) (h₁ . h₂)
+    ∀f₁ f₂ g₁ g₂ h₁ h₂ t.
+    trimap f₁ g₁ h₁ (trimap f₂ g₂ h₂ t) =
+    trimap (f₁ . f₂) (g₁ . g₂) (h₁ . h₂) t
 "trimap/first3"
-    ∀f f' g h.
-    trimap f g h . first3 f' =
-    trimap (f . f') g h
+    ∀f f' g h t.
+    trimap f g h (first3 f' t) =
+    trimap (f . f') g h t
 "trimap/second3"
-    ∀f g g' h.
-    trimap f g h . second3 g' =
-    trimap f (g . g') h
+    ∀f g g' h t.
+    trimap f g h (second3 g' t) =
+    trimap f (g . g') h t
 "trimap/third3"
-    ∀f g h h'.
-    trimap f g h . third3 h' =
-    trimap f g (h . h')
+    ∀f g h h' t.
+    trimap f g h (third3 h' t) =
+    trimap f g (h . h') t
 "first3/trimap"
-    ∀f f' g h.
-    first3 f' . trimap f g h =
-    trimap (f' . f) g h
+    ∀f f' g h t.
+    first3 f' (trimap f g h t) =
+    trimap (f' . f) g h t
 "second3/trimap"
-    ∀f g g' h.
-    second3 g' . trimap f g h =
-    trimap f (g' . g) h
+    ∀f g g' h t.
+    second3 g' (trimap f g h t) =
+    trimap f (g' . g) h t
 "third3/trimap"
-    ∀f g h h'.
-    third3 h' . trimap f g h =
-    trimap f g (h' . h)
+    ∀f g h h' t.
+    third3 h' (trimap f g h t) =
+    trimap f g (h' . h) t
   #-}
 
 
