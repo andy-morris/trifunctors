@@ -38,3 +38,12 @@ trifoldMapDefault ∷ (Tritraversable f, Monoid m)
                   ⇒ (α → m) → (β → m) → (γ → m) → f α β γ → m
 trifoldMapDefault f g h = getConst . tritraverse (c f) (c g) (c h)
   where c k = Const . k
+
+
+trifor ∷ (Tritraversable f, Applicative g)
+       ⇒ f α β γ → (α → g α') → (β → g β') → (γ → g γ') → g (f α' β' γ')
+trifor t f g h = tritraverse f g h t
+
+triforM ∷ (Tritraversable f, Monad m)
+        ⇒ f α β γ → (α → m α') → (β → m β') → (γ → m γ') → m (f α' β' γ')
+triforM t f g h = trimapM f g h t
