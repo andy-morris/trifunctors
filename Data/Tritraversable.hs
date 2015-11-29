@@ -1,7 +1,10 @@
 module Data.Tritraversable
+  (module Data.Trifoldable,
+   Tritraversable (..),
+   trimapDefault, trifoldMapDefault,
+   trifor, triforM)
 where
 
-import Data.Trifunctor
 import Data.Trifoldable
 import Data.Functor.Identity
 import Control.Applicative

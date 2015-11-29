@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveGeneric, DeriveTraversable, TemplateHaskell #-}
 module Data.Trifunctor
+  (Trifunctor (..))
 where
 
 class Trifunctor f where

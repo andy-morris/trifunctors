@@ -1,4 +1,11 @@
 module Data.Trifoldable
+  (module Data.Trifunctor,
+   Trifoldable (..),
+   trifoldr', trifoldrM,
+   trifoldl', trifoldlM,
+   tritraverse_, trimapM_,
+   trisequenceA_, trisequence_,
+   triList, triany, triall, trisum, triproduct)
 where
 
 import Data.Monoid
