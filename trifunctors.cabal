@@ -28,5 +28,5 @@ library
   exposed-modules:    Data.Trifunctor,
                       Data.Trifoldable,
                       Data.Tritraversable
-  build-depends:      base >= 4.8 && < 4.9,
+  build-depends:      base >= 4.8 && < 4.10,
                       bifunctors >= 5.1
