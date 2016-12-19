@@ -17,7 +17,7 @@ maintainer:     Andy Morris <hello@andy-morris.xyz>
 
 cabal-version:  >= 1.10
 build-type:     Simple
-tested-with:    GHC == 7.10.2
+tested-with:    GHC == 7.10.2, GHC == 8.0.1
 
 homepage: https://andy-morris.github.io/trifunctors
 bug-reports: https://github.com/andy-morris/trifunctors/issues
