@@ -34,6 +34,8 @@ library
   ghc-options:        -Wall
   exposed-modules:    Data.Trifunctor,
                       Data.Trifoldable,
-                      Data.Tritraversable
+                      Data.Tritraversable,
+                      Data.Trifunctor.Rotate,
+                      Data.Either3
   build-depends:      base >= 4.8 && < 4.10,
                       bifunctors >= 5.1
