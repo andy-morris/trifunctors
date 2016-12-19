@@ -1,5 +1,5 @@
 name:           trifunctors
-version:        1
+version:        1.0.0.1
 category:       Data
 synopsis:       Functors over three parameters
 description:
