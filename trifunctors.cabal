@@ -2,6 +2,13 @@ name:           trifunctors
 version:        1
 category:       Data
 synopsis:       Functors over three parameters
+description:
+  Provides classes @Trifunctor@, @Trifoldable@, and @Tritraversable@, in the
+  same pattern as 'Data.Functor.Functor' and 'Data.Bifunctor.Bifunctor' from
+  @base@.
+  .
+  This package also contains the ternary @Either3@, mostly as an example
+  trifunctor and dual to @(,,)@.
 license:        BSD3
 license-file:   LICENCE.txt
 
