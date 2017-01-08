@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Data.Data.Trifunctor.Rotate
+module Data.Trifunctor.Rotate
   (RotL (..), RotR (..))
 where
 
