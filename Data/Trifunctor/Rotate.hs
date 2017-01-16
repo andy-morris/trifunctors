@@ -8,6 +8,7 @@ import Data.Tritraversable
 import GHC.Generics
 
 
+-- | Rotate the last three arguments of a type to the left.
 newtype RotL f β γ α = RotL {unRotL ∷ f α β γ}
   deriving (Eq, Ord, Show, Read, Generic)
 
@@ -27,6 +28,7 @@ instance Tritraversable f ⇒ Tritraversable (RotL f) where
     tritraverse g h f = fmap RotL . tritraverse f g h . unRotL
 
 
+-- | Rotate the last three arguments of a type to the right.
 newtype RotR f γ α β = RotR {unRotR ∷ f α β γ}
   deriving (Eq, Ord, Show, Read, Generic)
 

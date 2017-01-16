@@ -8,6 +8,7 @@ import Data.Bifunctor.TH
 import GHC.Generics
 
 
+-- | Same as 'Either', but with three alternatives.
 data Either3 α β γ = Left3 α | Mid3 β | Right3 γ
   deriving (Eq, Ord, Show, Read, Generic,
             Functor, Foldable, Traversable)
