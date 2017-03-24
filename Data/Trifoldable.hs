@@ -1,6 +1,5 @@
 module Data.Trifoldable
-  (module Data.Trifunctor,
-   Trifoldable (..),
+  (Trifoldable (..),
    trifoldr', trifoldrM,
    trifoldl', trifoldlM,
    tritraverse_, trimapM_,
@@ -9,11 +8,10 @@ module Data.Trifoldable
 where
 
 import Data.Monoid
-import Data.Trifunctor
 
 
 -- | Foldable structures (like 'Foldable') but with three types of elements.
-class Trifunctor f ⇒ Trifoldable f where
+class Trifoldable f where
     {-# MINIMAL trifoldMap | trifoldr #-}
     -- | Combine all elements together.
     trifold    ∷ Monoid m ⇒ f m m m → m

@@ -1,10 +1,12 @@
 module Data.Tritraversable
-  (module Data.Trifoldable,
+  (module Data.Trifunctor,
+   module Data.Trifoldable,
    Tritraversable (..),
    trimapDefault, trifoldMapDefault,
    trifor, triforM)
 where
 
+import Data.Trifunctor
 import Data.Trifoldable
 import Data.Functor.Identity
 import Control.Applicative
@@ -12,7 +14,7 @@ import Control.Applicative
 
 -- | Structures which can be traversed in order while keeping the shape, like
 -- 'Traversable'.
-class Trifoldable f ⇒ Tritraversable f where
+class (Trifunctor f, Trifoldable f) ⇒ Tritraversable f where
     {-# MINIMAL tritraverse | trisequenceA #-}
     -- | Runs the effectful actions at each element and collect the results in
     -- a new structure of the same shape as the old.
