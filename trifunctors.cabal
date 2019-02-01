@@ -1,11 +1,11 @@
-name:           multifunctors
+name:           trifunctors
 version:        1.1
 category:       Data
-synopsis:       Functors over multiple parameters
+synopsis:       Functors over three parameters
 description:
-  Provides classes @Trifunctor@, @Trifoldable@, and @Tritraversable@; and
-  @Quadrifunctor@, @Quadrifoldable@, and @Quadritraversable@, in the same
-  pattern as 'Data.Functor.Functor' and 'Data.Bifunctor.Bifunctor' from @base@.
+  Provides classes @Trifunctor@, @Trifoldable@, and @Tritraversable@, in the
+  same pattern as 'Data.Functor.Functor' and 'Data.Bifunctor.Bifunctor' from
+  @base@.
   .
   This package also contains a ternary @Either3@, mostly as an example
   trifunctor and dual to @(,,)@.
@@ -36,8 +36,5 @@ library
                       Data.Trifoldable,
                       Data.Tritraversable,
                       Data.Trifunctor.Rotate,
-                      Data.Either3,
-                      Data.Quadrifunctor,
-                      Data.Quadrifoldable,
-                      Data.Quadritraversable
+                      Data.Either3
   build-depends:      base >= 4.10 && < 4.13
