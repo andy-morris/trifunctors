@@ -40,5 +40,4 @@ library
                       Data.Quadrifunctor,
                       Data.Quadrifoldable,
                       Data.Quadritraversable
-  build-depends:      base >= 4.8 && < 4.10,
-                      bifunctors >= 5.1 && < 6
+  build-depends:      base >= 4.10 && < 4.13

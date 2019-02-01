@@ -4,7 +4,9 @@ module Data.Either3
 where
 
 import Data.Tritraversable
-import Data.Bifunctor.TH
+import Data.Bifunctor
+import Data.Bifoldable
+import Data.Bitraversable
 import GHC.Generics
 
 
@@ -13,9 +15,11 @@ data Either3 α β γ = Left3 α | Mid3 β | Right3 γ
   deriving (Eq, Ord, Show, Read, Generic,
             Functor, Foldable, Traversable)
 
-deriveBifunctor     ''Either3
-deriveBifoldable    ''Either3
-deriveBitraversable ''Either3
+instance Bifunctor (Either3 α) where bimap = bimapDefault
+
+instance Bifoldable (Either3 α) where bifoldMap = bifoldMapDefault
+
+instance Bitraversable (Either3 α) where bitraverse = tritraverse pure
 
 instance Trifunctor Either3 where trimap = trimapDefault
 
