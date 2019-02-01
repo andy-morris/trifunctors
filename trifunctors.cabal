@@ -36,5 +36,7 @@ library
                       Data.Trifoldable,
                       Data.Tritraversable,
                       Data.Trifunctor.Rotate,
+                      Data.Trifunctor.Trifff,
+                      Data.Trifunctor.Tritannen,
                       Data.Either3
   build-depends:      base >= 4.10 && < 4.13
