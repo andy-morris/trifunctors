@@ -1,5 +1,5 @@
 name:           multifunctors
-version:        1
+version:        1.1
 category:       Data
 synopsis:       Functors over multiple parameters
 description:
