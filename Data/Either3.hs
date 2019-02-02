@@ -11,15 +11,15 @@ import GHC.Generics
 
 
 -- | Same as 'Either', but with three alternatives.
-data Either3 α β γ = Left3 α | Mid3 β | Right3 γ
+data Either3 a b c = Left3 a | Mid3 b | Right3 c
   deriving (Eq, Ord, Show, Read, Generic,
             Functor, Foldable, Traversable)
 
-instance Bifunctor (Either3 α) where bimap = bimapDefault
+instance Bifunctor (Either3 a) where bimap = bimapDefault
 
-instance Bifoldable (Either3 α) where bifoldMap = bifoldMapDefault
+instance Bifoldable (Either3 a) where bifoldMap = bifoldMapDefault
 
-instance Bitraversable (Either3 α) where bitraverse = tritraverse pure
+instance Bitraversable (Either3 a) where bitraverse = tritraverse pure
 
 instance Trifunctor Either3 where trimap = trimapDefault
 
