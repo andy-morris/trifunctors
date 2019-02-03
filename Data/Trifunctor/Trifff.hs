@@ -16,8 +16,7 @@ import GHC.Generics (Generic)
 
 newtype Trifff t f g h a b c =
     Trifff {runTrifff :: t (f a) (g b) (h c)}
-  deriving (Eq, Ord, Read, Show, Generic,
-            Functor, Foldable, Traversable)
+  deriving (Eq, Ord, Read, Show, Generic)
 
 instance (Trifunctor t, Functor f, Functor g, Functor h) =>
     Trifunctor (Trifff t f g h) where
@@ -49,4 +48,16 @@ instance (Tritraversable t, Traversable g, Traversable h) =>
     Bitraversable (Trifff t f g h a) where
   bitraverse g h (Trifff x) =
     Trifff <$> tritraverse pure (traverse g) (traverse h) x
+
+
+instance (Trifunctor t, Functor h) => Functor (Trifff t f g h a b) where
+  fmap h (Trifff x) = Trifff $ trimap id id (fmap h) x
+
+instance (Trifoldable t, Foldable h) => Foldable (Trifff t f g h a b) where
+  foldMap h (Trifff x) =
+    trifoldMap (const mempty) (const mempty) (foldMap h) x
+
+instance (Tritraversable t, Traversable h) =>
+    Traversable (Trifff t f g h a b) where
+  traverse h (Trifff x) = Trifff <$> tritraverse pure pure (traverse h) x
 

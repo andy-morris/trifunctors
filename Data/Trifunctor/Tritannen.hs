@@ -14,10 +14,9 @@ import Data.Tritraversable
 import GHC.Generics (Generic)
 
 
-newtype Tritannen f t a b c =
-    Tritannen {runTritannen :: f (t a b c)}
-  deriving (Eq, Ord, Read, Show, Generic,
-            Functor, Foldable, Traversable)
+newtype Tritannen f t a b c = Tritannen {runTritannen :: f (t a b c)}
+  deriving (Eq, Ord, Read, Show, Generic)
+
 
 instance (Functor f, Trifunctor t) => Trifunctor (Tritannen f t) where
   trimap f g h = Tritannen . fmap (trimap f g h) . runTritannen
@@ -31,14 +30,26 @@ instance (Traversable f, Tritraversable t) =>
     fmap Tritannen . traverse (tritraverse f g h) . runTritannen
 
 
-instance (Functor f, Bifunctor (t a)) => Bifunctor (Tritannen f t a) where
-  bimap g h = Tritannen . fmap (bimap g h) . runTritannen
+instance (Functor f, Trifunctor t) => Bifunctor (Tritannen f t a) where
+  bimap g h = Tritannen . fmap (trimap id g h) . runTritannen
 
-instance (Foldable f, Bifoldable (t a)) =>
-    Bifoldable (Tritannen f t a) where
-  bifoldMap g h = foldMap (bifoldMap g h) . runTritannen
+instance (Foldable f, Trifoldable t) => Bifoldable (Tritannen f t a) where
+  bifoldMap g h = foldMap (trifoldMap (const mempty) g h) . runTritannen
 
-instance (Traversable f, Bitraversable (t a)) =>
+instance (Traversable f, Tritraversable t) =>
     Bitraversable (Tritannen f t a) where
   bitraverse g h =
-    fmap Tritannen . traverse (bitraverse g h) . runTritannen
+    fmap Tritannen . traverse (tritraverse pure g h) . runTritannen
+
+
+instance (Functor f, Trifunctor t) => Functor (Tritannen f t a b) where
+  fmap h = Tritannen . fmap (trimap id id h) . runTritannen
+
+instance (Foldable f, Trifoldable t) => Foldable (Tritannen f t a b) where
+  foldMap h =
+    foldMap (trifoldMap (const mempty) (const mempty) h) . runTritannen
+
+instance (Traversable f, Tritraversable t) =>
+    Traversable (Tritannen f t a b) where
+  traverse h =
+    fmap Tritannen . traverse (tritraverse pure pure h) . runTritannen
