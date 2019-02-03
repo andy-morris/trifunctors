@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric, DeriveTraversable, LambdaCase #-}
+{-# LANGUAGE DeriveGeneric, DeriveTraversable, LambdaCase, PolyKinds #-}
 
 module Data.Trifunctor.Sum
   (Sum (..))

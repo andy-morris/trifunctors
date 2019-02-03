@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric, PolyKinds #-}
 module Data.Trifunctor.Rotate
   (RotL (..), RotR (..))
 where

@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric, DeriveTraversable #-}
+{-# LANGUAGE DeriveGeneric, DeriveTraversable, PolyKinds #-}
 
 module Data.Trifunctor.Tritannen (Tritannen (..)) where
   -- if anyone can think of an analogue to Biff & Tannen for tri i'd love
