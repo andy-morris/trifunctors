@@ -1,9 +1,12 @@
-`multifunctors`
-===============
+`trifunctors`
+=============
 
 
-Trifunctors are, as the name suggests, functors in the last three arguments.
-And quadrifunctors have four. As well as `{Tri,Quadri}functor`, the package
-also contains `*foldable` and `*traversable` classes.
+Trifunctors are, as the name suggests, functors in the last three arguments. As
+well as `Trifunctor`, the package also contains `Trifoldable` and
+`Tritraversable` classes and a few concrete types which might be useful e.g.
+with [`DerivingVia`][dv].
 
-[Haddocks here](//andy-morris.github.io/multifunctors).
+[dv]: //downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#deriving-via
+
+[Haddocks can be found here](//andy-morris.github.io/trifunctors).
