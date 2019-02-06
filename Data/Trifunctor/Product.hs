@@ -1,5 +1,13 @@
 {-# LANGUAGE DeriveGeneric, DeriveTraversable, PolyKinds #-}
 
+-- |
+-- Module:      Data.Trifunctor.Product
+-- Description: Trifunctor product
+-- Copyright:   © 2019 Andy Morris
+-- Licence:     AGPL-3.0-or-later
+-- Maintainer:  hello@andy-morris.xyz
+-- Stability:   experimental
+-- Portability: DeriveGeneric, DeriveTraversable, PolyKinds
 module Data.Trifunctor.Product
   (Product (..))
 where
@@ -14,6 +22,7 @@ import Data.Tritraversable
 import GHC.Generics (Generic)
 
 
+-- | Product of two 'Trifunctor's.
 data Product s t a b c = Pair (s a b c) (t a b c)
   deriving (Eq, Ord, Show, Read, Generic,
             Functor, Foldable, Traversable)

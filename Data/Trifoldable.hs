@@ -1,16 +1,48 @@
+-- |
+-- Module:      Data.Trifoldable
+-- Description: Three-argument 'Foldable'
+-- Copyright:   © 2019 Andy Morris
+-- Licence:     AGPL-3.0-or-later
+-- Maintainer:  hello@andy-morris.xyz
+-- Stability:   experimental
+-- Portability: portable
 module Data.Trifoldable
   (Trifoldable (..),
    trifoldr', trifoldrM,
    trifoldl', trifoldlM,
    tritraverse_, trimapM_,
    trisequenceA_, trisequence_,
-   triList, triany, triall, trisum, triproduct)
+   triList, triany, triall, trisum, triproduct,
+   trinull, trilength, trifind, trielem)
 where
 
 import Data.Monoid
+import Data.Maybe
 
 
--- | Foldable structures (like 'Foldable') but with three types of elements.
+-- |
+-- Foldable structures (like 'Foldable') but with three types of
+-- elements.
+--
+-- If more than just the minimum is defined, then the other functions
+-- should satisfy these identities (which are also the default
+-- definitions):
+--
+-- @
+-- 'trifold' === 'trifoldMap' 'id' 'id' 'id'
+--
+-- 'trifoldMap' f g h ===
+--   'trifoldr' ('mappend' . f) ('mappend' . g) ('mappend' . h) 'mempty'
+--
+-- 'trifoldr' f g h z t ===
+--   'appEndo' ('trifoldMap' ('Endo' . f) ('Endo' . g) ('Endo' . h) t) z
+-- @
+--
+-- If @f@ is also a 'Data.Trifunctor.Trifunctor', then additionally:
+--
+-- @
+-- 'trifoldMap' f g h === 'trifold' . 'Data.Trifunctor.trimap' f g h
+-- @
 class Trifoldable f where
   {-# MINIMAL trifoldMap | trifoldr #-}
   -- | Combine all elements together.
@@ -112,3 +144,21 @@ trisum = getSum . trifoldMap Sum Sum Sum
 -- | The product of all contained elements.
 triproduct :: (Trifoldable f, Num a) => f a a a -> a
 triproduct = getProduct . trifoldMap Product Product Product
+
+
+-- | Whether any elements of any type exist.
+trinull :: Trifoldable f => f a b c -> Bool
+trinull = getAny . trifoldMap yes yes yes where yes = const $ Any True
+
+-- | The total number of elements of any type.
+trilength :: Trifoldable f => f a b c -> Int
+trilength = trifoldl' one one one 0 where one x _ = x + 1
+
+-- | Find an element satisfying the predicate, if any.
+trifind :: Trifoldable f => (a -> Bool) -> f a a a -> Maybe a
+trifind p = getFirst . trifoldMap found found found
+  where found x = First $ if p x then Just x else Nothing
+
+-- | Whether the given value is an element of the structure.
+trielem :: (Trifoldable f, Eq a) => a -> f a a a -> Bool
+trielem x = isJust . trifind (== x)

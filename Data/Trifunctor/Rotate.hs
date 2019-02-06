@@ -1,4 +1,13 @@
 {-# LANGUAGE DeriveGeneric, PolyKinds #-}
+
+-- |
+-- Module:      Data.Trifunctor.Rotate
+-- Description: Rotate arguments left or right
+-- Copyright:   © 2019 Andy Morris
+-- Licence:     AGPL-3.0-or-later
+-- Maintainer:  hello@andy-morris.xyz
+-- Stability:   experimental
+-- Portability: DeriveGeneric, PolyKinds
 module Data.Trifunctor.Rotate
   (RotL (..), RotR (..))
 where

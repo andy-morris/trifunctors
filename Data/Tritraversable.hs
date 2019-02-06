@@ -1,3 +1,11 @@
+-- |
+-- Module:      Data.Tritraversable
+-- Description: Three-argument 'Traversable'
+-- Copyright:   © 2019 Andy Morris
+-- Licence:     AGPL-3.0-or-later
+-- Maintainer:  hello@andy-morris.xyz
+-- Stability:   experimental
+-- Portability: portable
 module Data.Tritraversable
   (module Data.Trifunctor,
    module Data.Trifoldable,
@@ -14,6 +22,38 @@ import Control.Applicative
 
 -- | Structures which can be traversed in order while keeping the shape, like
 -- 'Traversable'.
+--
+-- The laws are analogous to those for 'Traversable':
+--
+-- For 'tritraverse':
+--
+-- @
+-- -- "naturality"
+-- 'tritraverse' (t . f) (t . g) (t . h) === t . 'tritraverse' f g h
+--
+-- -- "identity"
+-- 'tritraverse' 'Identity' 'Identity' 'Identity' === 'Identity'
+--
+-- -- "composition"
+-- 'Data.Functor.Compose.Compose' . 'fmap' ('tritraverse' g1 g2 g3) . 'tritraverse' f1 f2 f3 ===
+--   'tritraverse' ('Data.Functor.Compose.Compose' . 'fmap' g1 . f1)
+--               ('Data.Functor.Compose.Compose' . 'fmap' g2 . f2)
+--               ('Data.Functor.Compose.Compose' . 'fmap' g3 . f3)
+-- @
+--
+-- For 'trisequenceA':
+--
+-- @
+-- -- "naturality"
+-- t . 'trisequenceA' === 'trisequenceA' . 'fmap' t
+--
+-- -- "identity"
+-- 'trisequenceA' . 'fmap' 'Identity' === 'Identity'
+--
+-- -- "composition"
+-- 'trisequenceA' . 'fmap' 'Data.Functor.Compose.Compose' ===
+--    'Data.Functor.Compose.Compose' . 'fmap' 'trisequenceA' . 'trisequenceA'
+-- @
 class (Trifunctor f, Trifoldable f) => Tritraversable f where
   {-# MINIMAL tritraverse | trisequenceA #-}
   -- | Runs the effectful actions at each element and collect the results in

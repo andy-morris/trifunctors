@@ -1,8 +1,15 @@
 {-# LANGUAGE DeriveGeneric, DeriveTraversable, PolyKinds #-}
 
+-- |
+-- Module:      Data.Trifunctor.Trifff
+-- Description: Compose a trifunctor with three functors
+-- Copyright:   © 2019 Andy Morris
+-- Licence:     AGPL-3.0-or-later
+-- Maintainer:  hello@andy-morris.xyz
+-- Stability:   experimental
+-- Portability: DeriveGeneric, DeriveTraversable, PolyKinds
 module Data.Trifunctor.Trifff (Trifff (..)) where
-  -- if anyone can think of an analogue to Biff & Tannen for tri i'd love
-  -- to hear it
+  -- if anyone can think of better names i'd love to hear them
 
 
 import Data.Bifunctor
@@ -14,6 +21,10 @@ import Data.Tritraversable
 import GHC.Generics (Generic)
 
 
+-- | Compose three 'Functor's inside a 'Trifunctor', the opposite
+-- arrangement to 'Data.Functor.Tritannen'.
+--
+-- (The names work better for \'Biff\' and \'Tannen\'.)
 newtype Trifff t f g h a b c =
     Trifff {runTrifff :: t (f a) (g b) (h c)}
   deriving (Eq, Ord, Read, Show, Generic)

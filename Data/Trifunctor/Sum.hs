@@ -1,5 +1,13 @@
 {-# LANGUAGE DeriveGeneric, DeriveTraversable, LambdaCase, PolyKinds #-}
 
+-- |
+-- Module:      Data.Trifunctor.Sum
+-- Description: Trifunctor sum
+-- Copyright:   © 2019 Andy Morris
+-- Licence:     AGPL-3.0-or-later
+-- Maintainer:  hello@andy-morris.xyz
+-- Stability:   experimental
+-- Portability: DeriveGeneric, DeriveTraversable, LambdaCase, PolyKinds
 module Data.Trifunctor.Sum
   (Sum (..))
 where
@@ -14,6 +22,7 @@ import Data.Tritraversable
 import GHC.Generics (Generic)
 
 
+-- | Sum of two 'Trifunctor's.
 data Sum s t a b c = Inl (s a b c) | Inr (t a b c)
   deriving (Eq, Ord, Show, Read, Generic,
             Functor, Foldable, Traversable)
